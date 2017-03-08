@@ -20,17 +20,23 @@ type hzhouseitem struct {
 
 func main() {
 	var i uint
-	fw, _ := os.Create("writer.csv")
+	fw, _ := os.Create("demo.csv")
 	enc := csvdata.NewEncoder(fw)
+	fmt.Println("start encode------")
 	for i = 0; i < 10; i++ {
 		item := hzhouseitem{"abc", "def", "west", 1, 2, 112.2, i}
 		err := enc.Encode(item)
-		fmt.Println("encode:", item, err)
+		if err == nil {
+			fmt.Println("encode:", item)
+		} else {
+			fmt.Println("encode:", err)
+		}
 	}
 	fw.Close()
-	fr, _ := os.Open("writer.csv")
+	fr, _ := os.Open("demo.csv")
 	dec := csvdata.NewDecoder(fr)
 	di := hzhouseitem{}
+	fmt.Println("start decode------")
 	for {
 		err := dec.Decode(&di)
 		if err == io.EOF {
@@ -39,8 +45,7 @@ func main() {
 			fmt.Println(err)
 			break
 		}
-		fmt.Println(di)
+		fmt.Println("decode:", di)
 	}
 	fr.Close()
-	fmt.Print("end")
 }

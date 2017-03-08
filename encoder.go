@@ -3,7 +3,7 @@ package csvdata
 import (
 	"encoding/csv"
 	"errors"
-	"fmt"
+	_ "fmt"
 	"io"
 	"reflect"
 	"strconv"
@@ -124,7 +124,7 @@ func (enc *Encoder) Encode(item interface{}) error {
 		default:
 			{
 				// do nothing
-				fmt.Println(rftk)
+				//fmt.Println(rftk)
 			}
 		}
 

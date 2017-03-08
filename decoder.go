@@ -3,7 +3,7 @@ package csvdata
 import (
 	"encoding/csv"
 	_ "errors"
-	"fmt"
+	_ "fmt"
 	"io"
 	"reflect"
 	"strconv"
@@ -33,10 +33,9 @@ func (dec *Decoder) Decode(item interface{}) error {
 		return err
 	}
 	pos := 0
-	fmt.Println(fields)
+
 	re := rv.Elem()
 	fieldnum := re.NumField()
-	fmt.Println(fieldnum)
 	for _, fv := range fields {
 
 		for {
@@ -45,8 +44,6 @@ func (dec *Decoder) Decode(item interface{}) error {
 			}
 			done := true
 			rf := re.Field(pos)
-			//fmt.Println("name:", rf.Type().Name())
-			fmt.Println("name:", re.Field(pos).T)
 			pos++
 			if rf.CanSet() == false {
 				break
@@ -60,7 +57,6 @@ func (dec *Decoder) Decode(item interface{}) error {
 					if err != nil {
 						return err
 					}
-					fmt.Println(pos, trf)
 					rf.SetFloat(trf)
 				}
 			case reflect.Float64:
@@ -69,13 +65,11 @@ func (dec *Decoder) Decode(item interface{}) error {
 					if err != nil {
 						return err
 					}
-					fmt.Println(pos, trf)
 					rf.SetFloat(trf)
 				}
 
 			case reflect.String:
 				{
-					fmt.Println(pos, fv)
 					rf.SetString(fv)
 				}
 			case reflect.Int:
@@ -84,7 +78,6 @@ func (dec *Decoder) Decode(item interface{}) error {
 					if err != nil {
 						return err
 					}
-					fmt.Println(pos, tri)
 					rf.SetInt(tri)
 				}
 			case reflect.Int8:
@@ -125,7 +118,6 @@ func (dec *Decoder) Decode(item interface{}) error {
 					if err != nil {
 						return err
 					}
-					fmt.Println(pos, trui)
 					rf.SetUint(trui)
 				}
 			case reflect.Uint8:

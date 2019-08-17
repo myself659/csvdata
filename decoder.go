@@ -2,23 +2,24 @@ package csvdata
 
 import (
 	"encoding/csv"
-	_ "errors"
-	_ "fmt"
 	"io"
 	"reflect"
 	"strconv"
 )
 
+//Decoder Decoder description
 type Decoder struct {
 	*csv.Reader
 }
 
+//NewDecoder create decoder for  csv reader
 func NewDecoder(r io.Reader) *Decoder {
 	dec := &Decoder{csv.NewReader(r)}
 	dec.TrimLeadingSpace = true
 	return dec
 }
 
+//Decode Decode
 func (dec *Decoder) Decode(item interface{}) error {
 	var (
 		fields []string

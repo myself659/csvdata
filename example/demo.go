@@ -2,20 +2,21 @@ package main
 
 import (
 	"fmt"
-	"github.com/myself659/csvdata"
 	"io"
 	"os"
+
+	"github.com/myself659/csvdata"
 )
 
 type hzhouseitem struct {
 	//Id   int64  `gorm:"primary_key`
-	Date    string  `gorm:"primary_key"`
-	Name    string  `gorm:"primary_key"`
-	Area    string  `gorm:"type:varchar(128)"`
-	Wc      int     `sql:"wc"`
-	Wd      int     `sql:"wd"`
-	Areanum float64 `sql: "Areanum"`
-	Id      uint
+	Date    string
+	Name    string
+	Area    string
+	Wc      int
+	Wd      int
+	Areanum float64
+	ID      uint
 }
 
 func main() {
